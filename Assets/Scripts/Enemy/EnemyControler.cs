@@ -44,9 +44,15 @@ namespace Enemy
             return (playerPosition.position - transform.position).normalized;
         }
 
-        public void DashToDirection(Vector3 direction)
+        public Vector3 DirectionToPlayerPlusVelocity()
         {
-            
+            return ((playerPosition.position + _rigidbody.velocity) - transform.position).normalized;
+        }
+
+        public void DashToDirection(Vector3 direction, float strengthDash)
+        {
+            TurnToDirection(direction);
+            _rigidbody.AddForce(direction * strengthDash, ForceMode.Impulse);
         }
 
         public void TurnToDirection(Vector3 direction)

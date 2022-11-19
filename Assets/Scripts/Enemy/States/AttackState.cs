@@ -11,7 +11,8 @@ namespace Enemy
         }
         public override void Invoke(EnemyControler currentEnemy)
         {
-            _timer = +Time.deltaTime;
+            _timer += Time.deltaTime;
+            Debug.Log(_timer);
             if (_timer > currentEnemy.attackSpeed)
             {
                 currentEnemy.GetAttackType().Attack(currentEnemy);

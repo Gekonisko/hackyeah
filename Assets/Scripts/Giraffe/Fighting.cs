@@ -8,7 +8,9 @@ public enum AttackType {
     Area
 }
 
-public class Fighting : MonoBehaviour {
+public class Fighting : MonoBehaviour, IDamageable {
+    [SerializeField] private float health;
+    
     [SerializeField] private Transform aoeAttackOriginPoint;
     [SerializeField] private Transform forwardAttackOriginPoint;
 
@@ -33,7 +35,6 @@ public class Fighting : MonoBehaviour {
 
     void Update(){
         if (_canAttack) {
-            Debug.Log("trying to attack");
             if (Input.GetKeyDown(KeyCode.J)) {
                 // J attack
                 Attack(_jAttack);
@@ -50,8 +51,7 @@ public class Fighting : MonoBehaviour {
     }
 
     void Attack(GiraffeAttackSO attack){
-            Debug.Log("Attacking");
-        
+
         // Set what type of attack it is
         Transform origin;
         switch (attack.type) {
@@ -69,6 +69,9 @@ public class Fighting : MonoBehaviour {
         // Get all affected entities
         Collider[] colliders = Physics.OverlapSphere(origin.position, attack.radius);
         foreach (var collider in colliders) {
+            if (collider.gameObject == gameObject) {
+                continue;
+            }
             collider.GetComponent<IDamageable>()?.TakeDamage(attack.damage);
         }
     }
@@ -96,5 +99,16 @@ public class Fighting : MonoBehaviour {
     IEnumerator EnableAttacks(float time){
         yield return new WaitForSecondsRealtime(time);
         EnableAttack();
+    }
+
+    public void TakeDamage(float damage){
+        health -= damage;
+        if (health <= 0) {
+            Die();
+        }
+    }
+
+    public void Die(){
+        Destroy(gameObject);
     }
 }

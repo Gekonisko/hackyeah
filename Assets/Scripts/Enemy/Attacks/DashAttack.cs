@@ -4,9 +4,10 @@ namespace Enemy
 {
     public class DashAttack : MonoBehaviour, IAttackType
     {
-        public void Attack()
+        public int dashStrength;
+        public void Attack(EnemyControler currentEnemy)
         {
-            
+            currentEnemy.DashToDirection(currentEnemy.DirectionToPlayer(), dashStrength);
         }
     }
 }

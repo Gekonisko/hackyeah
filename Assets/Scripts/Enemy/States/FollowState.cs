@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
 
 namespace Enemy
 {
     public class FollowState : IEnemyState
     {
+        private Rigidbody rig;
+        private void Start()
+        {
+            rig = GetComponent<Rigidbody>();
+        }
+
         public FollowState()
         {
             enemyState = EnemyStates.FollowPlayer;

@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Enemy.States;
 using Unity.VisualScripting;
+using UnityEngine;
+using Random = System.Random;
 
 namespace Enemy
 {
@@ -15,6 +18,8 @@ namespace Enemy
             {
                 _states.Add(state.enemyState, state);
             }
+
+            _currentState = _states[EnemyStates.Standby];
         }
         public void SetState(EnemyStates newState)
         {
@@ -29,6 +34,33 @@ namespace Enemy
         public void Invoke(EnemyControler currentEnemy)
         {
             _currentState.Invoke(currentEnemy);
+            
+        }
+
+        public bool IsStunned()
+        {
+            if (_currentState.enemyState == EnemyStates.Stun)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsProvoked()
+        {
+            if (_currentState.enemyState == EnemyStates.Standby)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool IsProvokedAndNotStunned()
+        {
+            return IsProvoked() && !IsStunned();
         }
     }
 }

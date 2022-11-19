@@ -9,6 +9,7 @@ public class CanvasController : MonoBehaviour {
     // Start is called before the first frame update
 
     public void newDialog(string dialog){
+        StopAllCoroutines();
         StartCoroutine(showDialog(dialog));
     }
 

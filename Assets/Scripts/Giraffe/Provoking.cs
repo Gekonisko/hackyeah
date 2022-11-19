@@ -6,6 +6,8 @@ public class Provoking : MonoBehaviour
 {
     [SerializeField] private float timeBetweenProvocations;
     [SerializeField] private float provokingRadius;
+    [SerializeField] CanvasController canvas;
+    [SerializeField] private string[] sebaTexts;
     
     private float _lastProvocationTime;
     void Start()
@@ -16,13 +18,15 @@ public class Provoking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Provocation") == 1) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             if (Time.time - _lastProvocationTime > timeBetweenProvocations) {
                 _lastProvocationTime = Time.time;
                 Collider[] colliders = Physics.OverlapSphere(transform.position, provokingRadius);
                 foreach (var collider in colliders) {
                     collider.GetComponent<IProvocable>()?.Provoke(transform);
                 }
+                Debug.Log("Sending dialog");
+                canvas.newDialog(sebaTexts[Random.Range(0, sebaTexts.Length)]);
             }
         }
     }

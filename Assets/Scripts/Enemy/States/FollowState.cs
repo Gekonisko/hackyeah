@@ -1,9 +1,14 @@
+using UnityEngine;
+
 namespace Enemy
 {
     public class FollowState : IEnemyState
     {
-        public EnemyStates name;
-        public void Invoke(EnemyControler currentEnemy)
+        public FollowState()
+        {
+            enemyState = EnemyStates.FollowPlayer;
+        }
+        public override void Invoke(EnemyControler currentEnemy)
         {
             
         }

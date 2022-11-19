@@ -6,15 +6,14 @@ namespace Enemy
 {
     public class EnemyStateManager
     {
-        private Dictionary<EnemyStates, IEnemyState> _states = new();
+        private readonly Dictionary<EnemyStates, IEnemyState> _states = new();
 
         public EnemyStateManager(List<IEnemyState> inputStates)
         {
-            // _states.Add(EnemyStates.Attack, inputStates[0]);
-            // _states.Add(EnemyStates.Standby);
-            // _states.Add(EnemyStates.Attack, new AttackState());
-            // _states.Add(EnemyStates.Attack, new AttackState());
-            // _states.Add(EnemyStates.Attack, new AttackState());
+            foreach (var state in inputStates)
+            {
+                _states.Add(state.enemyState, state);
+            }
         }
     }
 }

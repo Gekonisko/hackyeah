@@ -1,7 +1,10 @@
+using UnityEngine;
+
 namespace Enemy
 {
-    public interface IEnemyState
+    public abstract class IEnemyState : MonoBehaviour
     {
-        public void Invoke(EnemyControler currentEnemy);
+        public EnemyStates enemyState;
+        public abstract void Invoke(EnemyControler currentEnemy);
     }
 }

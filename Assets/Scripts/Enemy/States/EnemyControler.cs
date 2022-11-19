@@ -16,9 +16,8 @@ namespace Enemy
         private IAttackType _currentAttack;
 
         public void Start()
-        {
-            // var manager = new EnemyStateManager(GetComponents<IEnemyState>());
-         _currentAttack = GetComponent<IAttackType>();
+        { 
+            _currentAttack = GetComponent<IAttackType>();
         }
 
         public IAttackType GetAttackType()

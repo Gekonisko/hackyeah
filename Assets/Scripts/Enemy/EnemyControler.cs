@@ -11,7 +11,7 @@ namespace Enemy
         public float movementSpeed;
         public float stunTime;
 
-        private Transform _playerPosition;
+        public Transform playerPosition;
         
         private IAttackType _currentAttack;
 

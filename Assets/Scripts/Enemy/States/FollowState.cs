@@ -10,7 +10,7 @@ namespace Enemy
         }
         public override void Invoke(EnemyControler currentEnemy)
         {
-            
+            transform.position = Vector3.MoveTowards(transform.position, currentEnemy.playerPosition.position, currentEnemy.movementSpeed * Time.deltaTime);
         }
     }
 }

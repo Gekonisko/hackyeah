@@ -12,6 +12,7 @@ namespace Enemy
         public float attackRange;
         public float hp;
         public float movementSpeed;
+        public float torque;
         public float stunTime;
 
         public Transform playerPosition;
@@ -57,13 +58,16 @@ namespace Enemy
 
         public void TurnToDirection(Vector3 direction)
         {
-            
+            _rigidbody.AddTorque(Vector3.up * (torque * Vector3.Dot(direction.normalized, transform.forward) * Time.deltaTime));
         }
 
         public void GoToDirection(Vector3 direction)
         {
             TurnToDirection(direction);
-            _rigidbody.AddForce(direction.normalized * movementSpeed * Time.deltaTime);
+
+            var force = direction.normalized * movementSpeed * Time.deltaTime;
+            Debug.Log(force);
+            _rigidbody.AddForce(force);
         }
 
         public void Provoke(Transform target)

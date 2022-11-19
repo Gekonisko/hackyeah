@@ -39,12 +39,24 @@ namespace Enemy
             return _currentAttack;
         }
 
+        public Vector3 DirectionToPlayer()
+        {
+            return (playerPosition.position - transform.position).normalized;
+        }
+
+        public void DashToDirection(Vector3 direction)
+        {
+            
+        }
+
+        public void TurnToDirection(Vector3 direction)
+        {
+            
+        }
+
         public void GoToDirection(Vector3 direction)
         {
-            if (direction != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 40.0f);
-            }
+            TurnToDirection(direction);
             _rigidbody.AddForce(direction.normalized * movementSpeed * Time.deltaTime);
         }
 

@@ -117,7 +117,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.966175
+  m_Radius: 2.0866475
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6746508101415734595
 MonoBehaviour:
@@ -131,13 +131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36beed118cdf4d589e214620febebef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  attackSpeed: 1.5
+  damage: 10
+  attackSpeed: 3
   attackRange: 5
-  hp: 5
-  movementSpeed: 3000
-  torque: 0
-  stunTime: 5
+  hp: 30
+  movementSpeed: 5000
+  torque: 1
+  stunTime: 2
   playerPosition: {fileID: 0}
 --- !u!114 &6746508101415734592
 MonoBehaviour:
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f77d1d83354030b88723056b426f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashStrength: 40
+  dashStrength: 80
 --- !u!114 &6746508101415734593
 MonoBehaviour:
   m_ObjectHideFlags: 0

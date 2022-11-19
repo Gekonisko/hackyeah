@@ -11,8 +11,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        GetComponent<CharacterController>().SimpleMove(Vector3.forward * Time.deltaTime * 100);
     }
 }

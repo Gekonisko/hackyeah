@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -24,6 +25,11 @@ namespace Enemy
             _currentAttack = GetComponent<IAttackType>();
             stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
             _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void Update()
+        {
+            stateManager.Invoke(this);
         }
 
         public IAttackType GetAttackType()

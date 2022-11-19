@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -29,6 +30,32 @@ namespace Enemy
         public void Invoke(EnemyControler currentEnemy)
         {
             _currentState.Invoke(currentEnemy);
+        }
+
+        public bool IsStunned()
+        {
+            if (_currentState.enemyState == EnemyStates.Stun)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsProvoked()
+        {
+            if (_currentState.enemyState == EnemyStates.Standby)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool IsProvokedAndNotStunned()
+        {
+            return IsProvoked() && !IsStunned();
         }
     }
 }

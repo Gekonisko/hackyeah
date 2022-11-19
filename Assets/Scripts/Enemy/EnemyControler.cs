@@ -19,6 +19,7 @@ namespace Enemy
         private IAttackType _currentAttack;
         public EnemyStateManager stateManager;
         private Rigidbody _rigidbody;
+        private bool _isPlayerInRange = false;
 
         public void Start()
         { 
@@ -48,7 +49,43 @@ namespace Enemy
 
         public void Provoke(Transform target)
         {
-            throw new System.NotImplementedException();
+            if (!stateManager.IsProvoked())
+            {
+                playerPosition = target;
+                if (_isPlayerInRange)
+                {
+                    stateManager.SetState(EnemyStates.Attack);
+                }
+                else
+                {
+                    stateManager.SetState(EnemyStates.FollowPlayer);
+                }
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                _isPlayerInRange = true;
+                if (stateManager.IsProvokedAndNotStunned())
+                {
+                    stateManager.SetState(EnemyStates.Attack);
+                }
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                _isPlayerInRange = false;
+                if (stateManager.IsProvokedAndNotStunned())
+                {
+                    stateManager.SetState(EnemyStates.FollowPlayer);
+
+                }
+            }
         }
     }
 }

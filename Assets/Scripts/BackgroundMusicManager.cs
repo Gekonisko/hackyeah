@@ -13,7 +13,13 @@ public class BackgroundMusicManager : MonoBehaviour {
 
     private const string VolumeKey = "Volume";
 
+    private void Awake(){
+        _source = GetComponent<AudioSource>();
+    }
+
     private void Start(){
+        _currentMusicIndex = 0;
+        loopCurrentSong = false;
         _source.volume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
     }
 
@@ -34,8 +40,9 @@ public class BackgroundMusicManager : MonoBehaviour {
                 _currentMusicIndex++;
                 if (_currentMusicIndex >= music.Length) {
                     _currentMusicIndex = 0;
-                    _source.Play();
                 }
+                _source.clip = music[_currentMusicIndex];
+                _source.Play();
             }
         }
     }

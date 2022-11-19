@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Enemy.States;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Enemy
 {
     public class EnemyStateManager
     {
         private readonly Dictionary<EnemyStates, IEnemyState> _states = new();
-        private IEnemyState _currentState;
+        private IEnemyState _currentState = new StandByState();
 
         public EnemyStateManager(List<IEnemyState> inputStates)
         {
@@ -30,6 +32,7 @@ namespace Enemy
         public void Invoke(EnemyControler currentEnemy)
         {
             _currentState.Invoke(currentEnemy);
+            
         }
 
         public bool IsStunned()

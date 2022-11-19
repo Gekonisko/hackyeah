@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Enemy
@@ -32,6 +33,10 @@ namespace Enemy
 
         public void GoToDirection(Vector3 direction)
         {
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 40.0f);
+            }
             _rigidbody.AddForce(direction.normalized * movementSpeed);
         }
     }

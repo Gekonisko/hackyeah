@@ -25,7 +25,6 @@ public class Provoking : MonoBehaviour
                 foreach (var collider in colliders) {
                     collider.GetComponent<IProvocable>()?.Provoke(transform);
                 }
-                Debug.Log("Sending dialog");
                 canvas.newDialog(sebaTexts[Random.Range(0, sebaTexts.Length)]);
             }
         }

@@ -4,7 +4,7 @@ namespace Enemy
 {
     public class DashAttack : MonoBehaviour, IAttackType
     {
-        public void Attack()
+        public void Attack(EnemyControler currentEnemy)
         {
             
         }

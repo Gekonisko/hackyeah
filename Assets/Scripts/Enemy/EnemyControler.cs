@@ -8,7 +8,7 @@ namespace Enemy
     public class EnemyControler : MonoBehaviour, IProvocable
     {
         public float damage;
-        public float attacksSpeed;
+        public float attackSpeed;
         public float attackRange;
         public float hp;
         public float movementSpeed;

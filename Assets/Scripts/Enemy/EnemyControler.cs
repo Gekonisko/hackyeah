@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyControler : MonoBehaviour
+    public class EnemyControler : MonoBehaviour, IProvocable
     {
         public float damage;
         public float attacksSpeed;
@@ -37,7 +37,12 @@ namespace Enemy
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 40.0f);
             }
-            _rigidbody.AddForce(direction.normalized * movementSpeed);
+            _rigidbody.AddForce(direction.normalized * movementSpeed * Time.deltaTime);
+        }
+
+        public void Provoke(Transform target)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

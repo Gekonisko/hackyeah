@@ -66,7 +66,6 @@ namespace Enemy
             TurnToDirection(direction);
 
             var force = direction.normalized * movementSpeed * Time.deltaTime;
-            Debug.Log(force);
             _rigidbody.AddForce(force);
         }
 
@@ -106,7 +105,6 @@ namespace Enemy
                 if (stateManager.IsProvokedAndNotStunned())
                 {
                     stateManager.SetState(EnemyStates.FollowPlayer);
-
                 }
             }
         }

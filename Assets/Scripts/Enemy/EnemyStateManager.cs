@@ -10,7 +10,7 @@ namespace Enemy
     public class EnemyStateManager
     {
         private readonly Dictionary<EnemyStates, IEnemyState> _states = new();
-        private IEnemyState _currentState = new StandByState();
+        private IEnemyState _currentState;
 
         public EnemyStateManager(List<IEnemyState> inputStates)
         {
@@ -18,6 +18,8 @@ namespace Enemy
             {
                 _states.Add(state.enemyState, state);
             }
+
+            _currentState = _states[EnemyStates.Standby];
         }
         public void SetState(EnemyStates newState)
         {

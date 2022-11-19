@@ -16,8 +16,8 @@ namespace Enemy.States
             float roll = Random.Range(0f,1f);
             if (roll <= moveChances)
             {
-                float x = Random.Range(0, 10);
-                float z = Random.Range(0, 10);
+                float x = Random.Range(-10, 10);
+                float z = Random.Range(-10, 10);
                 currentEnemy.GoToDirection(new Vector3(x,0,z));
             }
         }

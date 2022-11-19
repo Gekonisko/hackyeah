@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Enemy
@@ -14,10 +15,12 @@ namespace Enemy
         public Transform playerPosition;
         
         private IAttackType _currentAttack;
+        private EnemyStateManager _stateManager;
 
         public void Start()
         { 
             _currentAttack = GetComponent<IAttackType>();
+            _stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
         }
 
         public IAttackType GetAttackType()

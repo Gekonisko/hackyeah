@@ -16,13 +16,13 @@ namespace Enemy
         public Transform playerPosition;
         
         private IAttackType _currentAttack;
-        private EnemyStateManager _stateManager;
+        public EnemyStateManager stateManager;
         private Rigidbody _rigidbody;
 
         public void Start()
         { 
             _currentAttack = GetComponent<IAttackType>();
-            _stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
+            stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
             _rigidbody = GetComponent<Rigidbody>();
         }
 

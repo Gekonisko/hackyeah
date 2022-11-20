@@ -34,7 +34,7 @@ namespace Enemy
 
         private void Update()
         {
-            Debug.Log(stateManager.GetCurrentState().enemyState);
+            //Debug.Log(stateManager.GetCurrentState().enemyState);
             stateManager.Invoke(this);
         }
 

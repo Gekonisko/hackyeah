@@ -77,6 +77,7 @@ public class Fighting : MonoBehaviour, IDamageable {
             if (collider.gameObject == gameObject) {
                 continue;
             }
+            Debug.Log("CHECKING");
             collider.GetComponent<IDamageable>()?.TakeDamage(attack.damage * _dmgMultiplier);
         }
     }

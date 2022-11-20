@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyControler : MonoBehaviour, IProvocable
+    public class EnemyControler : MonoBehaviour, IProvocable, IDamageable
     {
         public float damage;
         public float attackSpeed;
@@ -117,6 +117,24 @@ namespace Enemy
                     }
                 }
             }
+        }
+
+        public void TakeDamage(float damage)
+        {
+            hp -= damage;
+            if (hp <= 0)
+            {
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            movementSpeed = 0;
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isDead", true);
+            animator.SetBool("isAttacking", false);
         }
     }
 }

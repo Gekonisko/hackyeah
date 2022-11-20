@@ -14,6 +14,10 @@ namespace Enemy
             if (_timer == 0)
             {
                 currentEnemy.GetAttackType().Attack(currentEnemy);
+                currentEnemy.animator.SetBool("isRunning", false);
+                currentEnemy.animator.SetBool("isWalking", false);
+                currentEnemy.animator.SetBool("isDead", false);
+                currentEnemy.animator.SetBool("isAttacking", true);
             }
             
             _timer += Time.deltaTime;

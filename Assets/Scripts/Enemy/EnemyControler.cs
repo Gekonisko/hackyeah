@@ -108,7 +108,7 @@ namespace Enemy {
         }
 
         private void OnCollisionEnter(Collision collision) {
-            if (!Equals(collision.collider.GetComponent<IDamageable>(), null)) {
+            if (!Equals(collision.collider.GetComponent<IDamageable>(), null) && collision.collider.transform.CompareTag("Player")) {
                 collision.collider.GetComponent<IDamageable>().TakeDamage(damage);
             }
         }

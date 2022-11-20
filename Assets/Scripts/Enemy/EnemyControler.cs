@@ -18,6 +18,7 @@ namespace Enemy
         public Transform playerPosition;
         
         private IAttackType _currentAttack;
+        public Animator animator;
         public EnemyStateManager stateManager;
         private Rigidbody _rigidbody;
         private bool _isPlayerInRange = false;
@@ -27,6 +28,7 @@ namespace Enemy
             _currentAttack = GetComponent<IAttackType>();
             stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
             _rigidbody = GetComponent<Rigidbody>();
+            animator = GetComponent<Animator>();
         }
 
         private void Update()

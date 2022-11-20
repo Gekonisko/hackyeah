@@ -10,6 +10,8 @@ public enum AttackType {
 
 public class Fighting : MonoBehaviour, IDamageable {
     [SerializeField] private float health;
+
+    [SerializeField] private Dialogs dialogs;
     
     [SerializeField] private Transform aoeAttackOriginPoint;
     [SerializeField] private Transform forwardAttackOriginPoint;
@@ -51,7 +53,7 @@ public class Fighting : MonoBehaviour, IDamageable {
     }
 
     void Attack(GiraffeAttackSO attack){
-
+        dialogs.OnAction(DialogType.Provocation);
         // Set what type of attack it is
         Transform origin;
         switch (attack.type) {

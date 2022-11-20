@@ -7,6 +7,7 @@ public class BackgroundMusicManager : MonoBehaviour {
     public bool loopCurrentSong;
     
     [SerializeField] private AudioClip[] music;
+    [SerializeField] private AudioSource[] sources;
 
     private AudioSource _source;
     private short _currentMusicIndex;
@@ -20,7 +21,11 @@ public class BackgroundMusicManager : MonoBehaviour {
     private void Start(){
         _currentMusicIndex = 0;
         loopCurrentSong = false;
-        _source.volume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
+        float volume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
+        _source.volume = volume;
+        foreach (var source in sources) {
+            source.volume = volume;
+        }
     }
 
     private void Update(){
@@ -49,11 +54,17 @@ public class BackgroundMusicManager : MonoBehaviour {
 
     void IncreaseVolume(){
         _source.volume += 0.005f;
+        foreach (var source in sources) {
+            source.volume += 0.005f;
+        }
         PlayerPrefs.SetFloat(VolumeKey, _source.volume);
     }
 
     void DecreaseVolume(){
         _source.volume -= 0.005f;
+        foreach (var source in sources) {
+            source.volume -= 0.005f;
+        }
         PlayerPrefs.SetFloat(VolumeKey, _source.volume);
     }
 

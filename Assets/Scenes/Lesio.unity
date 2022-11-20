@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1143,6 +1143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  force: 500
+  _particleSystem: {fileID: 1798545899}
   dialogs: {fileID: 800375226}
   aoeAttackOriginPoint: {fileID: 1742754106}
   forwardAttackOriginPoint: {fileID: 596904598}
@@ -2666,6 +2668,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  force: 500
+  _particleSystem: {fileID: 0}
   dialogs: {fileID: 800375226}
   aoeAttackOriginPoint: {fileID: 976812520}
   forwardAttackOriginPoint: {fileID: 938240755}
@@ -3261,6 +3265,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742754105}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1798545899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8894310626232415929, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2044493942}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1860439961
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,6 +3882,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991551694}
   m_CullTransparentMesh: 1
+--- !u!1001 &2044493942
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 772761128}
+    m_Modifications:
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415876, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894310626232415929, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle System
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a2712027f2fa6643b6ab9d7d6bdb36c, type: 3}
 --- !u!1 &2068495070
 GameObject:
   m_ObjectHideFlags: 0

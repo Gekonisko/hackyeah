@@ -12,6 +12,8 @@ public enum AttackType {
 
 public class Fighting : MonoBehaviour, IDamageable {
     [SerializeField] private float health;
+    [SerializeField] private float force=500;
+    [SerializeField] private GameObject _particleSystem;
 
     [SerializeField] private Dialogs dialogs;
     
@@ -86,9 +88,12 @@ public class Fighting : MonoBehaviour, IDamageable {
                 continue;
             }
             EnemyControler ec = collider.GetComponent<EnemyControler>();
-            if (ec is not null) {
+            if (ec is not null)
+            {
+                Instantiate(_particleSystem, transform.position, Quaternion.identity);
+                collider.GetComponent<Rigidbody>().AddForce((collider.GetComponent<Transform>().position - transform.position).normalized * force);
                 ec.Provoke(transform);
-                ec.TakeDamage(attack.damage * _dmgMultiplier);
+                ec.TakeDamage(attack.damage * _dmgMultiplier * 10);
             }
         }
     }

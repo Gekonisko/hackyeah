@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 73d037d8b4010184cbcb4325ef32f796
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kinga.unity
     guid: edce14de73c50234ebc15ada1fd0ac69
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Kuba.unity
     guid: ebf5570c8022ac74aa8c99906c0473e9
   - enabled: 1

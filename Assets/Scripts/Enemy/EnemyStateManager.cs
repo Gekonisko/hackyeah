@@ -62,9 +62,24 @@ namespace Enemy
             }
         }
 
+        public bool IsDeath()
+        {
+            if (_currentState.enemyState == EnemyStates.Death)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public bool IsProvokedAndNotStunned()
         {
             return IsProvoked() && !IsStunned();
+        }
+
+        public bool IsProvokedAndNotStunnedAndNotDead()
+        {
+            return IsProvokedAndNotStunned() && !IsDeath();
         }
     }
 }

@@ -4,10 +4,8 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Enemy
-{
-    public class EnemyControler : MonoBehaviour, IProvocable, IDamageable
-    {
+namespace Enemy {
+    public class EnemyControler : MonoBehaviour, IProvocable, IDamageable {
         public float damage;
         public float attackSpeed;
         public float attackRange;
@@ -17,15 +15,14 @@ namespace Enemy
         public float stunTime;
 
         public Transform playerPosition;
-        
+
         private IAttackType _currentAttack;
         public Animator animator;
         public EnemyStateManager stateManager;
         private Rigidbody _rigidbody;
         private bool _isPlayerInRange = false;
 
-        public void Start()
-        { 
+        public void Start() {
             _currentAttack = GetComponent<IAttackType>();
             stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
             _rigidbody = GetComponent<Rigidbody>();
@@ -33,115 +30,85 @@ namespace Enemy
             GetComponent<SphereCollider>().radius = attackRange;
         }
 
-        private void Update()
-        {
-            //Debug.Log(stateManager.GetCurrentState().enemyState);
+        private void Update() {
             stateManager.Invoke(this);
         }
 
-        public IAttackType GetAttackType()
-        {
+        public IAttackType GetAttackType() {
             return _currentAttack;
         }
 
-        public Vector3 DirectionToPlayer()
-        {
+        public Vector3 DirectionToPlayer() {
             return (playerPosition.position - transform.position).normalized;
         }
 
-        public Vector3 DirectionToPlayerPlusVelocity()
-        {
+        public Vector3 DirectionToPlayerPlusVelocity() {
             return ((playerPosition.position + _rigidbody.velocity) - transform.position).normalized;
         }
 
-        public void DashToDirection(Vector3 direction, float strengthDash)
-        {
+        public void DashToDirection(Vector3 direction, float strengthDash) {
             TurnToDirection(direction);
             _rigidbody.AddForce(direction * strengthDash, ForceMode.Impulse);
         }
 
-        public void TurnToDirection(Vector3 direction)
-        {
-            _rigidbody.AddTorque(Vector3.up * (torque * Vector3.Dot(direction.normalized, transform.forward) * Time.deltaTime));
+        public void TurnToDirection(Vector3 direction) {
+            if (playerPosition != null)
+                transform.LookAt(playerPosition);
         }
 
-        public void GoToDirection(Vector3 direction)
-        {
+        public void GoToDirection(Vector3 direction) {
             TurnToDirection(direction);
 
             var force = direction.normalized * movementSpeed * Time.deltaTime;
             _rigidbody.AddForce(force);
         }
 
-        public void Provoke(Transform target)
-        {
-            if (!stateManager.IsProvoked())
-            {
+        public void Provoke(Transform target) {
+            if (!stateManager.IsProvoked()) {
                 playerPosition = target;
-                if (_isPlayerInRange)
-                {
+                if (_isPlayerInRange) {
                     stateManager.SetState(EnemyStates.Attack);
-                }
-                else
-                {
+                } else {
                     stateManager.SetState(EnemyStates.FollowPlayer);
                 }
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
+        private void OnTriggerEnter(Collider other) {
+            if (other.CompareTag("Player")) {
                 _isPlayerInRange = true;
-                if (stateManager.IsProvokedAndNotStunned())
-                {
+                if (stateManager.IsProvokedAndNotStunnedAndNotDead()) {
                     stateManager.SetState(EnemyStates.Attack);
                 }
             }
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
+        private void OnTriggerExit(Collider other) {
+            if (other.CompareTag("Player")) {
                 _isPlayerInRange = false;
-                if (stateManager.IsProvokedAndNotStunned())
-                {
-                    if (stateManager.didAttack)
-                    {
+                if (stateManager.IsProvokedAndNotStunnedAndNotDead()) {
+                    if (stateManager.didAttack) {
                         stateManager.SetState(EnemyStates.FollowPlayer);
-                    }
-                    else
-                    {
+                    } else {
                         stateManager.shouldLeftAttack = true;
                     }
                 }
             }
         }
 
-        public void TakeDamage(float damage)
-        {
+        public void TakeDamage(float damage) {
             hp -= damage;
-            if (hp <= 0)
-            {
+            if (hp <= 0) {
                 Die();
             }
         }
 
-        public void Die()
-        {
-            movementSpeed = 0;
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isDead", true);
-            animator.SetBool("isAttacking", false);
+        public void Die() {
+            stateManager.SetState(EnemyStates.Death);
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (!Equals(collision.collider.GetComponent<IDamageable>(), null))
-            {
+        private void OnCollisionEnter(Collision collision) {
+            if (!Equals(collision.collider.GetComponent<IDamageable>(), null)) {
                 collision.collider.GetComponent<IDamageable>().TakeDamage(damage);
             }
         }

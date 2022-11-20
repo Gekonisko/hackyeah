@@ -6,6 +6,7 @@ namespace Enemy
         Attack,
         FollowPlayer,
         Escape,
-        Stun
+        Stun,
+        Death
     }
 }

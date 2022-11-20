@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyControler : MonoBehaviour, IProvocable
+    public class EnemyControler : MonoBehaviour, IProvocable, IDamageable
     {
         public float damage;
         public float attackSpeed;
@@ -29,6 +29,7 @@ namespace Enemy
             stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
             _rigidbody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
+            GetComponent<SphereCollider>().radius = attackRange;
         }
 
         private void Update()
@@ -106,9 +107,34 @@ namespace Enemy
                 _isPlayerInRange = false;
                 if (stateManager.IsProvokedAndNotStunned())
                 {
-                    stateManager.SetState(EnemyStates.FollowPlayer);
+                    if (stateManager.didAttack)
+                    {
+                        stateManager.SetState(EnemyStates.FollowPlayer);
+                    }
+                    else
+                    {
+                        stateManager.shouldLeftAttack = true;
+                    }
                 }
             }
+        }
+
+        public void TakeDamage(float damage)
+        {
+            hp -= damage;
+            if (hp <= 0)
+            {
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            movementSpeed = 0;
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isDead", true);
+            animator.SetBool("isAttacking", false);
         }
     }
 }

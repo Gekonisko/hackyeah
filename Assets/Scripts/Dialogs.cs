@@ -30,29 +30,31 @@ public class Dialogs : MonoBehaviour {
 
     private void Start(){
         _source = GetComponent<AudioSource>();
+        _timeOfLastDialog = 0;
+        _isSpeaking = false;
     }
     
     public void OnAction(DialogType typ){
         if (Time.time - _timeOfLastDialog < timeBetweenDialogs || _isSpeaking) {
             return;
         }
-
+        Debug.Log("Action");
         int index;
         switch (typ) {
             case DialogType.Attack:
-                if (Random.Range(0, 10) == 0) {
+                if (Random.Range(0, 1) == 0) {
                     index = Random.Range(0, attackClips.Length);
                     Say(attackClips[index], attackTexts[index]);
                 }
                 break;
             case DialogType.Damage:
-                if (Random.Range(0, 10) == 0) {
+                if (Random.Range(0, 1) == 0) {
                     index = Random.Range(0, damageTakenClips.Length);
                     Say(damageTakenClips[index], damageTexts[index]);
                 }
                 break;
             case DialogType.Provocation:
-                if (Random.Range(0, 10) == 0) {
+                if (Random.Range(0, 1) == 0) {
                     index = Random.Range(0, provocationClips.Length);
                     Say(provocationClips[index], provocationTexts[index]);
                 }
@@ -61,10 +63,12 @@ public class Dialogs : MonoBehaviour {
     }
 
     void Say(AudioClip clip, string text){
+        Debug.Log("SAYING");
         StartCoroutine(AsyncSay(clip, text));
     }
 
     IEnumerator AsyncSay(AudioClip clip, string text){
+        Debug.Log("ASYNC");
         _isSpeaking = true;
         dialogText.SetText(text);
         _source.clip = clip;

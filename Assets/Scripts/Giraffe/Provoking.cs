@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,8 @@ public class Provoking : MonoBehaviour
 {
     [SerializeField] private float timeBetweenProvocations;
     [SerializeField] private float provokingRadius;
-    [SerializeField] CanvasController canvas;
-    [SerializeField] private string[] sebaTexts;
+
+    [SerializeField] private Dialogs dialogs;
     
     private float _lastProvocationTime;
     void Start()
@@ -25,7 +26,7 @@ public class Provoking : MonoBehaviour
                 foreach (var collider in colliders) {
                     collider.GetComponent<IProvocable>()?.Provoke(transform);
                 }
-//                canvas.newDialog(sebaTexts[Random.Range(0, sebaTexts.Length)]);
+                dialogs.OnAction(DialogType.Provocation);
             }
         }
     }

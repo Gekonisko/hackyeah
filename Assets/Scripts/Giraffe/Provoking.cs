@@ -19,7 +19,7 @@ public class Provoking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || true) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             if (Time.time - _lastProvocationTime > timeBetweenProvocations) {
                 _lastProvocationTime = Time.time;
                 Collider[] colliders = Physics.OverlapSphere(transform.position, provokingRadius);

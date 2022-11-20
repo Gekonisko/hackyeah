@@ -30,11 +30,9 @@ public class Movement : MonoBehaviour {
         // Move player
         if (_canPlayerMove) {
             _controller.SimpleMove(movementSpeed * moveDirection);
-        }
-
-        // Rotate in moving direction
-        if (moveDirection != Vector3.zero) {
-            transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (moveDirection), Time.deltaTime * directionFollowSpeed);
+            if (moveDirection != Vector3.zero) {
+                transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (moveDirection), Time.deltaTime * directionFollowSpeed);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 
 public enum AttackType {
@@ -77,8 +78,11 @@ public class Fighting : MonoBehaviour, IDamageable {
             if (collider.gameObject == gameObject) {
                 continue;
             }
-            Debug.Log("CHECKING");
-            collider.GetComponent<IDamageable>()?.TakeDamage(attack.damage * _dmgMultiplier);
+            EnemyControler ec = GetComponent<EnemyControler>();
+            if (ec is not null) {
+                ec.Provoke(transform);
+                ec.TakeDamage(attack.damage * _dmgMultiplier);
+            }
         }
     }
 

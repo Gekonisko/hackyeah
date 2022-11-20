@@ -826,6 +826,7 @@ GameObject:
   - component: {fileID: 4114272481514471713}
   - component: {fileID: 4114272481514471712}
   - component: {fileID: 4114272481514471719}
+  - component: {fileID: 5359138110303788195}
   m_Layer: 0
   m_Name: Elephant
   m_TagString: Untagged
@@ -890,6 +891,7 @@ MonoBehaviour:
   torque: 1
   stunTime: 3
   playerPosition: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!54 &4114272481514471722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1011,6 +1013,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 4
+--- !u!114 &5359138110303788195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057078250252094443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250f56d4a1a2460da8f6686304eee304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 5
 --- !u!1 &4167154563884491567
 GameObject:
   m_ObjectHideFlags: 0

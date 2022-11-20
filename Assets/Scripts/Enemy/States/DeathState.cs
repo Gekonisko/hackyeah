@@ -2,6 +2,10 @@ namespace Enemy.States
 {
     public class DeathState : IEnemyState
     {
+        public DeathState()
+        {
+            enemyState = EnemyStates.Death;
+        }
         public override void Invoke(EnemyControler currentEnemy)
         {
             currentEnemy.animator.SetBool("isRunning", false);

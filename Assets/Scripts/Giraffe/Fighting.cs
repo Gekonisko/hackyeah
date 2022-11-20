@@ -26,6 +26,9 @@ public class Fighting : MonoBehaviour, IDamageable {
     private GiraffeAttackSO _kAttack;
     private GiraffeAttackSO _lAttack;
 
+    private float _dmgMultiplier = 1;
+    private float _delayMultiplier = 1;
+
     private void Start(){
         _canAttack = true;
         
@@ -74,7 +77,7 @@ public class Fighting : MonoBehaviour, IDamageable {
             if (collider.gameObject == gameObject) {
                 continue;
             }
-            collider.GetComponent<IDamageable>()?.TakeDamage(attack.damage);
+            collider.GetComponent<IDamageable>()?.TakeDamage(attack.damage * _dmgMultiplier);
         }
     }
 
@@ -112,5 +115,17 @@ public class Fighting : MonoBehaviour, IDamageable {
 
     public void Die(){
         Destroy(gameObject);
+    }
+
+    public void ApplyDmgMultiplier(int count){
+        _dmgMultiplier += count;
+    }
+
+    public void ApplySpeedMultiplier(float count){
+        _delayMultiplier += count;
+    }
+
+    public void AddHealth(int count){
+        health += count;
     }
 }

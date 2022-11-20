@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Enemy
@@ -135,6 +136,14 @@ namespace Enemy
             animator.SetBool("isWalking", false);
             animator.SetBool("isDead", true);
             animator.SetBool("isAttacking", false);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (!Equals(collision.collider.GetComponent<IDamageable>(), null))
+            {
+                collision.collider.GetComponent<IDamageable>().TakeDamage(damage);
+            }
         }
     }
 }

@@ -15,12 +15,9 @@ public class Dialogs : MonoBehaviour {
     [SerializeField] private string[] damageTexts;
     [SerializeField] private AudioClip[] provocationClips;
     [SerializeField] private string[] provocationTexts;
-    [SerializeField] private AudioClip[] attackClips;
-    [SerializeField] private string[] attackTexts;
 
     [SerializeField] private TextMeshProUGUI dialogText;
-
-    [SerializeField] private short attackChance;
+    
     [SerializeField] private short damageChance;
     [SerializeField] private short provocationChance;
 
@@ -41,12 +38,6 @@ public class Dialogs : MonoBehaviour {
         Debug.Log("Action");
         int index;
         switch (typ) {
-            case DialogType.Attack:
-                if (Random.Range(0, 1) == 0) {
-                    index = Random.Range(0, attackClips.Length);
-                    Say(attackClips[index], attackTexts[index]);
-                }
-                break;
             case DialogType.Damage:
                 if (Random.Range(0, 1) == 0) {
                     index = Random.Range(0, damageTakenClips.Length);

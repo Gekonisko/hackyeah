@@ -350,8 +350,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423671112}
-  m_LocalRotation: {x: 0.298838, y: -0.17066121, z: 0.05440922, w: 0.9373421}
-  m_LocalPosition: {x: 2.9, y: 4.647, z: -7.7}
+  m_LocalRotation: {x: 0.3458277, y: -0.03353929, z: 0.012370529, w: 0.9376168}
+  m_LocalPosition: {x: 1, y: 10.757, z: -13.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -468,8 +468,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445219702}
-  m_LocalRotation: {x: 0.298838, y: -0.17066121, z: 0.05440922, w: 0.9373421}
-  m_LocalPosition: {x: 2.9, y: 4.647, z: -7.7}
+  m_LocalRotation: {x: 0.3458277, y: -0.03353929, z: 0.012370529, w: 0.9376168}
+  m_LocalPosition: {x: 1, y: 10.757, z: -13.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 2.9, y: 6.7, z: -7.7}
+  m_FollowOffset: {x: 1, y: 12.81, z: -13.96}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -705,12 +705,31 @@ MonoBehaviour:
   timeBetweenDialogs: 3
   damageTakenClips: []
   damageTexts: []
-  provocationClips: []
-  provocationTexts: []
-  attackClips: []
-  attackTexts: []
+  provocationClips:
+  - {fileID: 8300000, guid: 75881989752384c418d90402b683391f, type: 3}
+  - {fileID: 8300000, guid: 9d81c15c3b1322147b0879e9b168b1ef, type: 3}
+  - {fileID: 8300000, guid: 7c5b1232257698e48b65b4be816138d6, type: 3}
+  - {fileID: 8300000, guid: 5c39c2397f9f8224e8fc5707a0412eaa, type: 3}
+  - {fileID: 8300000, guid: 94dac9327e921364c84eb7b9abcdcc9f, type: 3}
+  - {fileID: 8300000, guid: 01636343ea4297e40a446943684aaa31, type: 3}
+  - {fileID: 8300000, guid: 7400d89ce199a9b4ea06f5e35c7ed5e1, type: 3}
+  - {fileID: 8300000, guid: 1189dc761cb85b9429b45c2bc3fd9f1c, type: 3}
+  - {fileID: 8300000, guid: 67d2625bb557e524a88d97e07c3434cf, type: 3}
+  - {fileID: 8300000, guid: 5ae209e3beb094746bc8bb0bdb0d26fb, type: 3}
+  - {fileID: 8300000, guid: f5543752df38cc24a8a7b3db4c58eb76, type: 3}
+  provocationTexts:
+  - A masz!!!
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
+  - cos tam szyja
   dialogText: {fileID: 1954047776}
-  attackChance: 2
   damageChance: 2
   provocationChance: 2
 --- !u!4 &800375227

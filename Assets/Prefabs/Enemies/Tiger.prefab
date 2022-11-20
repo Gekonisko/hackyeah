@@ -2834,6 +2834,7 @@ GameObject:
   - component: {fileID: 1151308877091118052}
   - component: {fileID: 1151308877091118053}
   - component: {fileID: 1151308877091118058}
+  - component: {fileID: -8293274292895316221}
   m_Layer: 0
   m_Name: Tiger
   m_TagString: Untagged
@@ -2897,6 +2898,7 @@ MonoBehaviour:
   torque: 1
   stunTime: 3
   playerPosition: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!54 &1151308877091118063
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3018,3 +3020,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 4
+--- !u!114 &-8293274292895316221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056865617711357608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250f56d4a1a2460da8f6686304eee304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 5

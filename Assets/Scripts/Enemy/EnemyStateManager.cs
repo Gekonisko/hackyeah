@@ -25,9 +25,12 @@ namespace Enemy
         }
         public void SetState(EnemyStates newState)
         {
-            didAttack = false;
-            shouldLeftAttack = false;
-            _currentState = _states[newState];
+            if (_currentState.enemyState != EnemyStates.Death)
+            {
+                didAttack = false;
+                shouldLeftAttack = false;
+                _currentState = _states[newState];
+            }
         }
 
         public IEnemyState GetCurrentState()

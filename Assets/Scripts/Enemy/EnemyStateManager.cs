@@ -11,6 +11,8 @@ namespace Enemy
     {
         private readonly Dictionary<EnemyStates, IEnemyState> _states = new();
         private IEnemyState _currentState;
+        public bool didAttack = false;
+        public bool shouldLeftAttack = false;
 
         public EnemyStateManager(List<IEnemyState> inputStates)
         {
@@ -23,6 +25,8 @@ namespace Enemy
         }
         public void SetState(EnemyStates newState)
         {
+            didAttack = false;
+            shouldLeftAttack = false;
             _currentState = _states[newState];
         }
 

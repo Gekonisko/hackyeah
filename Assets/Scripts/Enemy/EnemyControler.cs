@@ -29,6 +29,7 @@ namespace Enemy
             stateManager = new EnemyStateManager(new List<IEnemyState>(GetComponents<IEnemyState>()));
             _rigidbody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
+            GetComponent<SphereCollider>().radius = attackRange;
         }
 
         private void Update()
@@ -106,7 +107,14 @@ namespace Enemy
                 _isPlayerInRange = false;
                 if (stateManager.IsProvokedAndNotStunned())
                 {
-                    stateManager.SetState(EnemyStates.FollowPlayer);
+                    if (stateManager.didAttack)
+                    {
+                        stateManager.SetState(EnemyStates.FollowPlayer);
+                    }
+                    else
+                    {
+                        stateManager.shouldLeftAttack = true;
+                    }
                 }
             }
         }

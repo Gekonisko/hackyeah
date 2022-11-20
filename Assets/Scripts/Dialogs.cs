@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 
 public enum DialogType {
-    Attack,
     Damage,
     Provocation
 }
@@ -11,8 +10,6 @@ public enum DialogType {
 public class Dialogs : MonoBehaviour {
     [SerializeField] private float timeBetweenDialogs;
     
-    [SerializeField] private AudioClip[] damageTakenClips;
-    [SerializeField] private string[] damageTexts;
     [SerializeField] private AudioClip[] provocationClips;
     [SerializeField] private string[] provocationTexts;
 
@@ -35,15 +32,10 @@ public class Dialogs : MonoBehaviour {
         if (Time.time - _timeOfLastDialog < timeBetweenDialogs || _isSpeaking) {
             return;
         }
-        Debug.Log("Action");
+        
+        // Z powodu zmian w planach, duża część switcha została usunięta, kiedyś naprawię resztę (może)
         int index;
         switch (typ) {
-            case DialogType.Damage:
-                if (Random.Range(0, 1) == 0) {
-                    index = Random.Range(0, damageTakenClips.Length);
-                    Say(damageTakenClips[index], damageTexts[index]);
-                }
-                break;
             case DialogType.Provocation:
                 if (Random.Range(0, 1) == 0) {
                     index = Random.Range(0, provocationClips.Length);
@@ -54,12 +46,10 @@ public class Dialogs : MonoBehaviour {
     }
 
     void Say(AudioClip clip, string text){
-        Debug.Log("SAYING");
         StartCoroutine(AsyncSay(clip, text));
     }
 
     IEnumerator AsyncSay(AudioClip clip, string text){
-        Debug.Log("ASYNC");
         _isSpeaking = true;
         dialogText.SetText(text);
         _source.clip = clip;

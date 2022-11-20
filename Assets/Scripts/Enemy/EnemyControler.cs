@@ -94,7 +94,7 @@ namespace Enemy
             if (other.CompareTag("Player"))
             {
                 _isPlayerInRange = true;
-                if (stateManager.IsProvokedAndNotStunned())
+                if (stateManager.IsProvokedAndNotStunnedAndNotDead())
                 {
                     stateManager.SetState(EnemyStates.Attack);
                 }
@@ -106,7 +106,7 @@ namespace Enemy
             if (other.CompareTag("Player"))
             {
                 _isPlayerInRange = false;
-                if (stateManager.IsProvokedAndNotStunned())
+                if (stateManager.IsProvokedAndNotStunnedAndNotDead())
                 {
                     if (stateManager.didAttack)
                     {
@@ -131,11 +131,7 @@ namespace Enemy
 
         public void Die()
         {
-            movementSpeed = 0;
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isDead", true);
-            animator.SetBool("isAttacking", false);
+            stateManager.SetState(EnemyStates.Death);
         }
 
         private void OnCollisionEnter(Collision collision)

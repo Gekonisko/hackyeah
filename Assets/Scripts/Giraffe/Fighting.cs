@@ -28,11 +28,14 @@ public class Fighting : MonoBehaviour, IDamageable {
     private GiraffeAttackSO _kAttack;
     private GiraffeAttackSO _lAttack;
 
+    private Animator _animator;
+
     private float _dmgMultiplier = 1;
     private float _delayMultiplier = 1;
 
     private void Start(){
         _canAttack = true;
+        _animator = GetComponent<Animator>();
         
         //DEBUG?????
         _jAttack = jAttacks[0];
@@ -45,14 +48,17 @@ public class Fighting : MonoBehaviour, IDamageable {
             if (Input.GetKeyDown(KeyCode.J)) {
                 // J attack
                 Attack(_jAttack);
+                _animator.Play("Armature|NeckAttack1");
             }
             else if (Input.GetKeyDown(KeyCode.K)) {
                 // K attack
                 Attack(_kAttack);
+                _animator.Play("Armature|Stamp1");
             }
             else if (Input.GetKeyDown(KeyCode.L)) {
                 // L attack
                 Attack(_lAttack);
+                _animator.Play("Armature|NeckAttack3");
             }
         }
     }

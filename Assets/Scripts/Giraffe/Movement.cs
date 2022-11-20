@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour {
     private float _horizontalInputAxis;
     private float _verticalInputAxis;
 
-    private bool _canPlayerMove;
+    public bool _canPlayerMove;
     // Start is called before the first frame update
     void Start(){
         _controller = GetComponent<CharacterController>();
